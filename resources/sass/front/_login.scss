@@ -1,0 +1,82 @@
+.login-section {
+    @extend .container;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    .row {
+        @extend .mx-0;
+    }
+}
+
+.signup-section {
+    @extend .container;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    .row {
+        @extend .mx-0;
+    }
+}
+
+.account-content {
+    @extend .col-lg-7;
+    @extend .px-0;
+    h1 {
+        @extend .display-4;
+        font-weight: 700;
+    }
+    p {
+        @extend .position-relative;
+        font-size: 1.125rem;
+        @extend .mt-4;
+        @extend .mb-5;
+        @extend .pt-4;
+
+        &::before {
+            @extend .position-absolute;
+            background: $accent;
+            content: ' ';
+            height: 1.5px;
+            width: 10rem;
+            top: 0;
+        }
+    }
+}
+
+.account-card {
+    @extend .col-lg-4;
+    @extend .offset-lg-1;
+    @extend .card;
+    form > div {
+        @extend .form-group;
+    }
+    input[type=text], input[type=email], input[type=password] {
+        @extend .form-control;
+    }
+    .remember-me {
+        @extend .custom-control;
+        @extend .custom-checkbox;
+        input[type=checkbox] {
+            @extend .custom-control-input;
+            &:focus ~ label::before {
+                -webkit-box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem $accent-lighter;
+                box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem $accent-lighter;
+            }
+            &:active ~ label::before {
+                background-color: $accent-light;
+            }
+            &:checked ~ label::before{
+                background-color:$accent;
+            }
+        }
+        label {
+            @extend .custom-control-label;
+        }
+    }
+    button[type=submit] {
+        @extend .main-action;
+    }
+    .forgot-password {
+        @extend .btn;
+        @extend .btn-link;
+        @extend .text-muted;
+    }
+}

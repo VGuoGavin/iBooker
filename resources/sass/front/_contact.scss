@@ -1,0 +1,66 @@
+.contact-section {
+    @extend .container;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    .row {
+        @extend .mx-0;
+    }
+}
+
+.contact-content {
+    @extend .col-md-5;
+    @extend .px-0;
+    h1 {
+        @extend .display-4;
+        font-weight: 700;
+    }
+    p {
+        @extend .position-relative;
+        font-size: 1.125rem;
+        @extend .mt-4;
+        @extend .mb-5;
+        @extend .pt-4;
+
+        &::before {
+            @extend .position-absolute;
+            background: $accent;
+            content: ' ';
+            height: 1.5px;
+            width: 10rem;
+            top: 0;
+        }
+    }
+}
+
+.contact-card {
+    @extend .col-md-6;
+    @extend .offset-md-1;
+    @extend .card;
+    input[type=text], input[type=email], input[type=password] {
+        @extend .form-control;
+    }
+    button[type=submit] {
+        @extend .main-action;
+    }
+    .forgot-password {
+        @extend .btn;
+        @extend .btn-link;
+        @extend .text-muted;
+    }
+}
+
+.spinner {
+    animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+    }
+}

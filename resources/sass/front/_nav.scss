@@ -1,0 +1,54 @@
+.main-nav {
+    @extend .navbar;
+    @extend .navbar-dark;
+    @extend .navbar-expand-md;
+    @extend .shadow-sm;
+    @extend .fixed-top;
+    background: $dark;
+
+    .navbar-links {
+        @extend .w-100;
+        @extend .dual-collapse2 !optional;
+        @extend .collapse;
+        @extend .navbar-collapse;
+
+        ul {
+            @extend .navbar-nav;
+
+            li {
+                @extend .nav-item;
+
+                &>a {
+                    @extend .nav-link;
+                    &.login {
+                        cursor: pointer;
+                        @extend .pr-3;
+                    }
+                    &.dashboard-action {
+                        @extend .main-action;
+                    }
+                }
+            }
+        }
+
+        &.left-links {
+            @extend .order-0;
+
+            &>ul {
+                @extend .mr-auto;
+            }
+        }
+
+        &.right-links {
+            @extend .order-1;
+
+            &>ul {
+                @extend .ml-auto;
+            }
+        }
+    }
+
+    .logo {
+        @extend .navbar-brand;
+    }
+}

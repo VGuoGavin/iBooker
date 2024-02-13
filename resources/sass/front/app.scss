@@ -1,0 +1,39 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,800|Work+Sans:400,700');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Pages
+@import 'nav';
+@import 'landing';
+@import 'login';
+@import 'contact';
+@import 'footer';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+body {
+    font-family: $font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+    font-weight: 800;
+}
+
+.form-control:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: $accent-light;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem $accent-lighter;
+    box-shadow: 0 0 0 0.2rem $accent-lighter;
+}

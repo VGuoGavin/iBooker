@@ -1,0 +1,208 @@
+.main-action {
+    @extend .btn,
+    .btn-danger;
+    background: $accent;
+}
+
+.secondary-action {
+    @extend .btn,
+    .btn-outline-secondary;
+
+    &:hover,
+    &:focus,
+    &.active {
+        @extend .text-secondary;
+        background: $hover-light;
+    }
+}
+
+.main-body {
+    min-height: 600px;
+}
+
+.landing {
+    @extend .container;
+    @extend .position-relative;
+    padding-top: 125px;
+    padding-bottom: 100px;
+
+    .main {
+        max-width: calc(100vw / 2);
+    }
+
+    .decor {
+        @extend .position-absolute;
+        right: 0;
+        top: 33px;
+        background-image: url('../../img/room-landing.png');
+        width: 515px;
+        height: 515px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        content: ' ';
+        z-index: -1;
+    }
+
+    .title {
+        @extend .display-3;
+        font-weight: 800;
+    }
+
+    .description {
+        @extend .position-relative;
+        @extend .mt-4;
+        @extend .pt-4;
+        font-size: 1.125rem;
+
+        &::before {
+            @extend .position-absolute;
+            top: 0;
+            left: 0;
+            content: " ";
+            width: 250px;
+            height: 1.5px;
+            background: $accent;
+        }
+    }
+
+    .actions {
+        @extend .mt-4;
+    }
+
+    .main-action {
+        @extend .btn-lg;
+    }
+
+    .secondary-action {
+        @extend .btn-lg;
+        @extend .ml-2;
+    }
+}
+
+.about {
+    @extend .container;
+    @extend .position-relative;
+    // @extend .text-right;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    .accent {
+        @extend .position-absolute;
+        left: 33.33%;
+        margin-top: 11px;
+        height: 5rem;
+        width: 2.5rem;
+        background: repeating-linear-gradient(-45deg,
+            $accent,
+            $accent 7.5px,
+            transparent 7.5px,
+            transparent 15px);
+    }
+
+
+    .decor {
+        @extend .position-absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background-image: url('../../img/calendar.png');
+        width: 17.5rem;
+        height: 17.5rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        content: ' ';
+        z-index: -1;
+    }
+
+    .content {
+        margin-left: calc(33.33% + 5rem);
+        max-width: calc(100vw / 2);
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    p {
+        @extend .mt-3;
+        font-size: 1.125rem;
+    }
+}
+
+.admin {
+    background: $hover-light;
+    @extend .position-relative;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    overflow: hidden;
+
+    .content {
+        @extend .container;
+    }
+
+    header {
+        max-width: calc(100vw / 2);
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    p {
+        @extend .mt-3;
+        font-size: 1.125rem;
+    }
+
+    .decor {
+        @extend .position-absolute;
+        right: 6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background-image: url('../../img/admin-landing.png');
+        width: 20rem;
+        height: 20rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        content: ' ';
+        z-index: -1;
+    }
+
+    .secondary-action {
+        @extend .mt-5;
+        @extend .btn-lg;
+    }
+}
+
+.last-action {
+    @extend .text-white;
+    @extend .text-center;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+    background: $dark;
+
+    header {
+        @extend .mt-0;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+
+        &::after {
+            @extend .d-block;
+            color: $accent;
+            content: '· · · · ·';
+            font-weight: normal;
+        }
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    .main-action {
+        @extend .mt-5;
+        @extend .btn-lg;
+    }
+}

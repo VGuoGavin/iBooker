@@ -1,0 +1,107 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,800|Work+Sans:400,700');
+@import 'spec/settings/index';
+@import 'spec/tools/index';
+@import "~bootstrap/scss/bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import 'spec/index';
+@import 'vendor/index';
+
+#loader {
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background: #fff;
+    z-index: 90000;
+    margin-top: 0;
+}
+
+#loader.fadeOut {
+    opacity: 0;
+    visibility: none;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0)
+    }
+
+    100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    100% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+$light: #ffffff;
+$dark: #272930;
+$hover-light: rgba(39, 41, 48, .05);
+$accent: #ef6461;
+$accent-light: #ef646180;
+$accent-lighter: #ef646140;
+
+.sidebar-logo {
+    background: $dark;
+}
+
+.datepicker {
+    @extend .p-10;
+}
+
+.datepicker,
+.timepicker,
+.picker-switch {
+    table {
+        @extend .m-0;
+        @extend .w-100;
+        @extend .ta-c;
+    }
+
+    td {
+        @extend .va-m;
+        padding: .1rem .5rem;
+    }
+}
+
+.loading-cog {
+    animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+    }
+}
