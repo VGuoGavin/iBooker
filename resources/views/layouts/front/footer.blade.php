@@ -28,7 +28,7 @@
                     <li><a class="text-muted" href="{{ route('register') }}">Sign up</a></li>
                     <li><a class="text-muted" href="{{ route('login') }}">Log in</a></li>
                     @auth
-                    <li><a class="text-muted" href="{{ route('dashboard') }}">Go to dashboard</a></li>
+                    <li><a class="text-muted" href="{{ route('dashboard.index') }}">Go to dashboard</a></li>
                     @endauth
                 </ul>
             </div>

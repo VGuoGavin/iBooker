@@ -66,7 +66,7 @@ class AnnouncementController extends Controller
         $announcement->announcer_id = $request->user()->id;
         $announcement->save();
 
-        return redirect()->action('AnnouncementController@show', ['id' => $announcement->id]);
+        return redirect()->action('App\Http\Controllers\AnnouncementController@show', ['id' => $announcement->id]);
     }
 
     /**
@@ -161,7 +161,7 @@ class AnnouncementController extends Controller
         }
         $announcement->save();
 
-        return redirect()->action('AnnouncementController@show', ['id' => $id]);
+        return redirect()->action('App\Http\Controllers\AnnouncementController@show', ['id' => $id]);
     }
 
     /**

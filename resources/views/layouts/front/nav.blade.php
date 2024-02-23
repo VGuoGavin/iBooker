@@ -1,6 +1,6 @@
 <nav class="main-nav">
     <div class="container">
-        <a href="{{ route('dashboard') }}" class="logo">
+        <a href="{{ route('dashboard.index') }}" class="logo">
             <img src="/static/img/logo-big.svg" height="30" class="d-inline-block align-top" alt="room booker logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks,#navbarLinks2" aria-controls="navbarLinks"

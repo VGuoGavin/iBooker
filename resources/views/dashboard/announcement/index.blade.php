@@ -60,8 +60,8 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h6 class="card-title font-weight-bold m-0">{{ $a->title }}</h6>
-                                            <small class="card-subtitle text-muted mB-10">Posted at {{ $a->posted_at->format('d-M-Y H:i') }}</small>
-                                            <p class="card-text mT-10">{{ str_limit($a->content, $limit = 100, $end = '...') }}</p>
+                                            <small class="card-subtitle text-muted mB-10">Posted at {{ $a->posted_at }}</small>
+                                            <p class="card-text mT-10">{{ $a->content }}</p>
                                             <a href="{{ route('announcements.show', ['id' => $a->id])}}">See more &rarr;</a>
                                         </div>
                                     </div>

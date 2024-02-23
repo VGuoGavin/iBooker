@@ -5,7 +5,7 @@
     <div class="row">
         <header class="contact-content">
             <h1>{{ __('Need help?') }}</h1>
-            <p>Email us directly to <a href="mailto:support@roombooker.com">support@roombooker.com</a>, or fill out the contact form</p>
+            <p>Email us directly to <a href="mailto:support@roombooker.com">guo.gavin@tpv-tech.com</a>, or fill out the contact form</p>
         </header>
         <div class="contact-card">
             <div id="contact-body" class="card-body">

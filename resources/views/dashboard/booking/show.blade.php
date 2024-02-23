@@ -44,7 +44,7 @@
                                 <tr>
                                     <th class="pX-20 pY-10 va-t" scope="row">{{__('Date of request')}}</th>
                                     <td class="pX-20 pY-10 va-t" >
-                                        {{$booking->status_changed_at->format('d-M-Y')}}
+                                        {{$booking->status_changed_at}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -75,13 +75,13 @@
                                 <tr>
                                     <th class="pX-20 pY-10 va-t" scope="row">{{__('Start of use')}}</th>
                                     <td class="pX-20 pY-10 va-t" >
-                                        {{$booking->details->start_datetime->format('d-M-Y H:i')}}
+                                        {{$booking->details->start_datetime}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="pX-20 pY-10 va-t" scope="row">{{__('End of use')}}</th>
                                     <td class="pX-20 pY-10 va-t" >
-                                        {{$booking->details->end_datetime->format('d-M-Y H:i')}}
+                                        {{$booking->details->end_datetime}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -462,13 +462,14 @@
     <script>
         var x;
         $('#generate').click(function() {
+            console.log("Button clicked!"); 
             $.ajax({
                 method: 'post',
                 url: '/api/accessCode',
-                data: $.param({
-                    _token: $('meta[name=csrf-token]').attr('content'),
+                data: {
+                    _token: $('meta[name = csrf-token]').attr('content'),
                     bid: $('input[name=bid]').val(),
-                }),
+                },
                 beforeSend: function(xhr) {
                     $('#generate').attr('disabled', 'disabled');
                     $('#code-container small').remove();
@@ -480,20 +481,20 @@
                     console.log(data);
                     $('#code').text(data.code);
                     $('#code-container .loading-cog').removeClass('d-ib').addClass('d-n');
-                    var eventTime= data.expiry;
+                    var eventTime = data.expiry;
                     var currentTime = Math.floor(Date.now() / 1000);
                     var diffTime = eventTime - currentTime;
-                    var duration = moment.duration(diffTime*1000, 'milliseconds');
+                    var duration = moment.duration(diffTime * 1000, 'milliseconds');
                     var interval = 1000;
                     $('#code-container').append(`<small class="w-100 pY-5">Code will expire in <span class="countdown"></span></small>`);
-                    x = setInterval(async function(){
+                    x = setInterval(function() {
                         duration = moment.duration(duration - interval, 'milliseconds');
                         console.log(moment.utc(duration.as('milliseconds')).format('HH:mm:ss'));
                         $('.countdown').text(moment.utc(duration.as('milliseconds')).format('HH:mm:ss'));
-                        if(duration.seconds() < 0) {
+                        if (duration.seconds() < 0) {
                             $('#generate').attr('disabled', false);
                             clearInterval(x);
-                            await $('#code-container small').remove();
+                            $('#code-container small').remove();
                             $('#code-container').append(`<small class="w-100 pY-5 text-danger"><strong>Expired. Please generate another code</strong></small>`);
                         }
                     }, interval);
@@ -507,5 +508,6 @@
             });
         })
     </script>
+    
     @endif
 @endsection

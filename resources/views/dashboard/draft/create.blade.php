@@ -39,9 +39,9 @@
                                 <label for="room">Room <span class="c-red-500">*</span>
                                     <i class="loading-cog fas fa-circle-notch d-n"></i>
                                 </label>
-                                <select class="custom-select" name="room" id="room" {{ isset($current) ? '' : 'disabled'}}>
-                                    @isset($current)
-                                        @foreach ($current->building->rooms as $room)
+                                <select class="custom-select" name="room" id="room" {{ isset($current) ? '' : ''}}>
+                                    @isset($rooms)
+                                        @foreach ($rooms as $room)
                                             <option value="{{$room->id}}" {{$current->id == $room->id ? 'selected' : ''}}>{{$room->name}}</option>
                                         @endforeach
                                     @else

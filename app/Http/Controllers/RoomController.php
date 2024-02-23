@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use App\Building;
 use App\Room;
 use App\BookingDraft;
@@ -26,9 +25,9 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $b = Input::get('b');
+        $b = $request->input('b');
         $chosen = Building::find($b);
         $rooms = Room::where('building_id', $b)->orderBy('name', 'asc')->get();
         $payload = [

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
-use App\Http\Controllers\Booking;
 use Illuminate\Support\Carbon;
 use App\Announcement;
+use App\Booking;
 
 class DashboardController extends Controller
 {

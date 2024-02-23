@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Building;
 use App\Room;
-use App\Http\Controllers\Booking;
+use App\Booking;
 use App\BookingDraft;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +30,7 @@ class BookingController extends Controller
                 'history' =>
                     Booking::where('status', '<>', Booking::INCOMPLETE_STATUS)
                            ->where('status', '<>', Booking::ACKNOWLEDGED_STATUS)
-                           ->orderBy('updated_at', 'dsc')->take(100)->get(),
+                           ->orderBy('updated_at', 'desc')->take(100)->get(),
             ];
         } else {
             $context = [

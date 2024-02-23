@@ -113,8 +113,8 @@
                             <div class="list-group">
                                 @foreach ($announcements as $announcement)
                                     <a href="#" class="list-group-item list-group-item-action tov-e ai-c d-f">
-                                        <span class="fxg-1 font-weight-bold">{{ str_limit($announcement->title, $limit = 20, $end = '...')}}</span>
-                                        <span>Posted on {{ $announcement->posted_at->format('d-M-y H:i') }}</span>
+                                        <span class="fxg-1 font-weight-bold">{{ $announcement->title}}</span>
+                                        <span>Posted on {{ $announcement->created_at->format('d-M-y H:i') }}</span>
                                     </a>
                                 @endforeach
                             </div>

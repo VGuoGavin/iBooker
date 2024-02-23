@@ -16,9 +16,9 @@
                         <div class="peer">
                             <h5 class="mB-0 font-weight-bold">{{ $announcement->title }} {{ $announcement->posted ? '' : __('(Draft)')}}</h5>
                             @unless ($announcement->posted)
-                            <small>Last edited on: {{ $announcement->updated_at->format('d-M-y H:i') }}</small>
+                            <small>Last edited on: {{ $announcement->updated_at }}</small>
                             @else
-                            <small>Posted on: {{ $announcement->posted_at->format('d-M-y H:i') }}</small>
+                            <small>Posted on: {{ $announcement->posted_at }}</small>
                             @endunless
                         </div>
                     </div>

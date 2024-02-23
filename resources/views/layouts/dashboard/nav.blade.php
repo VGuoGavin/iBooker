@@ -26,7 +26,7 @@
                         </a>
                     </li> --}}
                     <li>
-                        <a href="{{ route('profile') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                        <a href="{{ route('profile.edit') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                             <i class="ti-user mR-10"></i>
                             <span>Account</span>
                         </a>
@@ -43,14 +43,6 @@
                             <i class="ti-power-off mR-10"></i>
                             <span>Logout</span>
                         </a>
-
-                        <a  href="route('profile.edit')" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Profile') }}
-                        </a>
-        
-                        
-
-
                     </li>
                 </ul>
             </li>

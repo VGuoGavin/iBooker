@@ -36,10 +36,30 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-                        // Dashboard 路由组
+            // Dashboard 路由组
             Route::middleware('web')
                 ->prefix('dashboard')
                 ->group(base_path('routes/dashboard.php'));
+
+            Route::middleware('web')
+                ->prefix('dashboard/bookings')
+                ->group(base_path('routes/booking.php'));
+            
+            Route::middleware('web')
+                ->prefix('dashboard/rooms')
+                ->group(base_path('routes/room.php'));
+
+            Route::middleware('web')
+                ->prefix('dashboard/users')
+                ->group(base_path('routes/user.php'));
+            
+            Route::middleware('web')
+                ->prefix('dashboard/bookings/drafts')
+                ->group(base_path('routes/draft.php'));
+            
+            Route::middleware('web')
+                ->prefix('dashboard/announcements')
+                ->group(base_path('routes/announcement.php'));
         });
     }
 }

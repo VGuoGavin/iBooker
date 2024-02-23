@@ -46,38 +46,7 @@ class BookingDraftController extends Controller
         }
         return view('dashboard.draft.create', self::getContextData($context));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $draft = new BookingDraft;
-        $draft->room_id = $request->input('room');
-        $draft->purpose = $request->input('purpose');
-        $draft->comments = $request->input('comment');
-        $sdt = strtotime(str_replace('/', '-', $request->input('startDateTime')));
-        $draft->start_datetime = $sdt ? $sdt : null;
-        $edt = strtotime(str_replace('/', '-', $request->input('endDateTime')));
-        $draft->end_datetime = $edt ? $edt : null;
-        $draft->committed = false;
-        $draft->booker_id = $request->user()->id;
-        $draft->save();
-        if($request->input('facility')) {
-            $ids = array_keys($request->input('facility'));
-            $facilities = Facility::find($ids);
-            $draft->facilities()->attach($facilities, [
-                'room_id' => $draft->room_id
-            ]);
-        }
-        // return response()->json($draft, 200);
-        return redirect()->action('BookingDraftController@show', ['id' => $draft->trimmed_id]);
-    }
-
-    /**
+ /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -97,6 +66,43 @@ class BookingDraftController extends Controller
         }
         // return response()->json(,200);
     }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $draft = new BookingDraft;
+        $draft->room_id = $request->input('room');
+        $draft->purpose = $request->input('purpose');
+        $draft->comments = $request->input('comment');
+        //$sdt = strtotime(str_replace('/', '-', $request->input('startDateTime')));
+        //$draft->start_datetime = $sdt ? $sdt : null;
+        //$edt = strtotime(str_replace('/', '-', $request->input('endDateTime')));
+        //$draft->end_datetime = $edt ? $edt : null;
+
+        $sdt = Carbon::createFromFormat('d/m/Y H:i', $request->input('startDateTime'));
+        $draft->start_datetime = $sdt ? $sdt : null;
+        $edt = Carbon::createFromFormat('d/m/Y H:i', $request->input('endDateTime'));
+        $draft->end_datetime = $edt ? $edt : null;
+    
+        $draft->committed = false;
+        $draft->booker_id = $request->user()->id;
+        $draft->save();
+        if($request->input('facility')) {
+            $ids = array_keys($request->input('facility'));
+            $facilities = Facility::find($ids);
+            $draft->facilities()->attach($facilities, [
+                'room_id' => $draft->room_id
+            ]);
+        }
+        // return response()->json($draft, 200);
+        return redirect()->action('App\Http\Controllers\BookingDraftController@show', ['id' => $draft->trimmed_id]);
+    }
+
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -194,7 +200,7 @@ class BookingDraftController extends Controller
             $signature->save();
         }
 
-        return redirect()->action('BookingController@show', ['id' => $booking->trimmed_id]);
+        return redirect()->action('App\Http\Controllers\BookingController@show', ['id' => $booking->trimmed_id]);
     }
 
     /**

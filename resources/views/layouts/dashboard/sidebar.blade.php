@@ -5,7 +5,7 @@
         <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
                 <div class="peer peer-greed">
-                    <a class="sidebar-link td-n" href="{{ route('meetingroom') }}">
+                    <a class="sidebar-link td-n" href="{{ route('dashboard.index') }}">
                         <div class="peers ai-c fxw-nw">
                             <div class="peer">
                                 <div class="logo">
@@ -47,7 +47,7 @@
                     <span class="title">Rooms</span>
                 </a>
             </li>
-            @unless (Auth::user()->role_id == roombooker\User::ROLE_AUTHORITY)
+            @unless (Auth::user()->role_id == App\User::ROLE_AUTHORITY)
             <li class="nav-item">
                 <a class='sidebar-link{{ $active == 'bookings' ? ' active' : '' }}' href="{{ route('bookings.index') }}">
                     <span class="icon-holder">
