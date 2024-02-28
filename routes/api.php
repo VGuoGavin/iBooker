@@ -18,14 +18,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('contact', function (Request $request) {
+
+});
+
 Route::post('/roomsInBuilding', 'App\Http\Controllers\API\APIController@roomsInBuilding');
 
 Route::post('/roomDetail', 'App\Http\Controllers\API\APIController@roomDetail');
 
 Route::post('/roomBookings', 'App\Http\Controllers\API\APIController@roomBookings');
 
-//Route::post('/accessCode', 'App\Http\Controllers\API\APIController@generateAccessCode');
-Route::post('/accessCode', [APIController::class, 'generateAccessCode']);
+Route::post('/accessCode', 'App\Http\Controllers\API\APIController@generateAccessCode');
+//Route::post('/accessCode', [APIController::class, 'generateAccessCode']);
 
 Route::post('/accessBooking', 'App\Http\Controllers\API\APIController@accessBooking');
 

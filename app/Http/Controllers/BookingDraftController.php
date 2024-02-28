@@ -142,10 +142,12 @@ class BookingDraftController extends Controller
         $draft->room_id = $request->input('room');
         $draft->purpose = $request->input('purpose');
         $draft->comments = $request->input('comment');
-        $sdt = strtotime(str_replace('/', '-', $request->input('startDateTime')));
+
+        $sdt = Carbon::createFromFormat('d/m/Y H:i', $request->input('startDateTime'));
         $draft->start_datetime = $sdt ? $sdt : null;
-        $edt = strtotime(str_replace('/', '-', $request->input('endDateTime')));
+        $edt = Carbon::createFromFormat('d/m/Y H:i', $request->input('endDateTime'));
         $draft->end_datetime = $edt ? $edt : null;
+        
         $draft->committed = false;
         $draft->booker_id = $request->user()->id;
         $draft->save();
@@ -159,7 +161,7 @@ class BookingDraftController extends Controller
             ]);
         }
         // return response()->json($draft, 200);
-        return redirect()->action('BookingDraftController@show', ['id' => $draft->trimmed_id]);
+        return redirect()->action('App\Http\Controllers\BookingDraftController@show', ['id' => $draft->trimmed_id]);
     }
 
     /**

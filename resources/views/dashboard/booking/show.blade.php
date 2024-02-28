@@ -462,14 +462,13 @@
     <script>
         var x;
         $('#generate').click(function() {
-            console.log("Button clicked!"); 
             $.ajax({
                 method: 'post',
                 url: '/api/accessCode',
-                data: {
-                    _token: $('meta[name = csrf-token]').attr('content'),
+                data: $.param({
+                    _token: $('meta[name=csrf-token]').attr('content'),
                     bid: $('input[name=bid]').val(),
-                },
+                }),
                 beforeSend: function(xhr) {
                     $('#generate').attr('disabled', 'disabled');
                     $('#code-container small').remove();
@@ -478,29 +477,34 @@
                     clearInterval(x);
                 },
                 success: function(data) {
+                    // 获取 code 元素
+                    var codeElement = document.getElementById('code');
+
+                    // 给 code 元素赋值为 "124"
+                    codeElement.textContent = data.code;
                     console.log(data);
-                    $('#code').text(data.code);
+                    
                     $('#code-container .loading-cog').removeClass('d-ib').addClass('d-n');
-                    var eventTime = data.expiry;
+                    var eventTime= data.expiry;
                     var currentTime = Math.floor(Date.now() / 1000);
                     var diffTime = eventTime - currentTime;
-                    var duration = moment.duration(diffTime * 1000, 'milliseconds');
+                    var duration = moment.duration(diffTime*1000, 'milliseconds');
                     var interval = 1000;
                     $('#code-container').append(`<small class="w-100 pY-5">Code will expire in <span class="countdown"></span></small>`);
-                    x = setInterval(function() {
+                    x = setInterval(async function(){
                         duration = moment.duration(duration - interval, 'milliseconds');
                         console.log(moment.utc(duration.as('milliseconds')).format('HH:mm:ss'));
                         $('.countdown').text(moment.utc(duration.as('milliseconds')).format('HH:mm:ss'));
-                        if (duration.seconds() < 0) {
+                        if(duration.seconds() < 0) {
                             $('#generate').attr('disabled', false);
                             clearInterval(x);
-                            $('#code-container small').remove();
+                            await $('#code-container small').remove();
                             $('#code-container').append(`<small class="w-100 pY-5 text-danger"><strong>Expired. Please generate another code</strong></small>`);
                         }
                     }, interval);
                 },
                 error: function(xhr, message, error) {
-                    console.log(xhr, message, error);
+                    //console.log(xhr, message, error);
                     $('#generate').attr('disabled', false);
                     $('#code-container .loading-cog').removeClass('d-ib').addClass('d-n');
                     $('#code-container').append(`<small class="w-100 pY-5 text-danger"><strong>Failed to obtain access code. Please try again</strong></small>`);
@@ -508,6 +512,5 @@
             });
         })
     </script>
-    
     @endif
 @endsection

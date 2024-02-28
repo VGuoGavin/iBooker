@@ -52,11 +52,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="startDateTime">Start datetime <span class="c-red-500">*</span></label>
-                                    <input class="form-control datetimepicker-input" type="datetime" name="startDateTime" id="startDateTime" class="form-control" placeholder="Select a date & time" data-toggle="datetimepicker" data-target="#startDateTime">
+                                    <input class="form-control datetimepicker-input" type="datetime" name="startDateTime" id="startDateTime" class="form-control" placeholder="Select a date & time" data-toggle="datetimepicker" data-target="#startDateTime" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="endDateTime">End datetime <span class="c-red-500">*</span></label>
-                                    <input class="form-control datetimepicker-input" type="datetime" name="endDateTime" id="endDateTime" class="form-control" placeholder="Select a date & time"  data-toggle="datetimepicker" data-target="#endDateTime">
+                                    <input class="form-control datetimepicker-input" type="datetime" name="endDateTime" id="endDateTime" class="form-control" placeholder="Select a date & time"  data-toggle="datetimepicker" data-target="#endDateTime" required>
                                 </div>
                                 <div class="form-group col-12">
                                     <small>Make sure picked dates are far enough from today in order to be processed</small>
@@ -70,7 +70,7 @@
                                     @isset($current)
                                         @foreach ($current->facilities as $facility)
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" name="facility[{{$facility->id}}]" id="facility-{{$facility->id}}">
+                                                <input type="checkbox" class="custom-control-input" name="facility[{{$facility->id}}]" id="facility-{{$facility->id}}" required>
                                                 <label class="custom-control-label" for="facility-{{$facility->id}}">{{$facility->name}}</label>
                                             </div>
                                         @endforeach
@@ -81,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="purpose">{{__('Purpose')}} <span class="c-red-500">*</span></label>
-                                <input type="text" class="form-control" name="purpose" id="purpose" placeholder="">
+                                <input type="text" class="form-control" name="purpose" id="purpose" placeholder="" required>
                             </div>
                             <div class="form-group">
                                 <label for="comment">{{__('Other comments')}}</label>
@@ -118,11 +118,15 @@
         $(window).unbind('beforeunload');
     });
     $('#building').change(function(e) {
+        
         var b_id = $('#building').val();
         var data = {
             _token: $('meta[name=csrf-token]').attr('content'),
             b_id: b_id,
         };
+        console.log('b_id');
+        console.log(b_id);
+        console.log('data');
         console.log(data);
         if(b_id) {
             $.ajax({
@@ -144,6 +148,10 @@
                     });
                     $('#room').prop('disabled', false);
                     $('label[for=room] .loading-cog').removeClass('d-ib').addClass('d-n');
+                },
+                error: function(xhr, status, error) {
+                // 处理请求错误
+                    console.error(error);
                 }
             });
         } else {

@@ -30,7 +30,10 @@ class Signature extends Model
     {
         $message = Hash::make($this->booking_id . time());
         $secret = $this->signee->private_key;
-        $signature = sodium_crypto_sign_detached($message, $secret);
+        // 定义要用于生成随机字符串的字符集
+        $chars = "ABCDEFGHJKLMNPQRSTUVWXY3456789";
+        // 生成随机字符串
+        $signature = substr(str_shuffle($chars), 0, 6);
         $this->attributes['message'] = $message;
         $this->attributes['signature'] = $signature;
         if( is_null($this->attributes['signature']) || is_null($this->attributes['message']))

@@ -9,7 +9,7 @@
                 <small class="d-block mb-3 text-muted">©TPV Dell office 2024</small>
             </div>
             <div class="col-6 col-md-2">
-                <h5>RoomBooker</h5>
+                <h5>iBooker</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="text-muted" href="{{ route('home') }}">Home</a></li>
                     <li><a class="text-muted" href="{{ route('about') }}">About</a></li>

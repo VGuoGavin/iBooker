@@ -227,7 +227,7 @@
             });
         }
     });
-    $('#startDateTime').datetimepicker('date', '{{isset($draft->start_datetime) ? $draft->start_datetime->format('d/m/Y H:i') : '' }}');
-    $('#endDateTime').datetimepicker('date', '{{isset($draft->end_datetime) ? $draft->end_datetime->format('d/m/Y H:i') : '' }}');
+    $('#startDateTime').datetimepicker('date', '{{isset($draft->start_datetime) ? $draft->start_datetime : '' }}');
+    $('#endDateTime').datetimepicker('date', '{{isset($draft->end_datetime) ? $draft->end_datetime : '' }}');
 </script>
 @endsection

@@ -20,6 +20,7 @@
                             @forelse ($buildings as $building)
                                 <div class="peer peer-greed">
                                     <a class="btn {{ $building == $chosen ? 'btn-dark' : 'btn-light border-secondary'}}" href="?b={{ $building->id }}" role="button">{{ $building->name }}</a>
+                                    <img src="{{ asset('images/TPV.jpg') }}" alt="Building Image">
                                 </div>
                             @empty
                                 <p class="mB-0">{{__('No buildings')}}</p>
@@ -39,8 +40,11 @@
                         <div class="layer bgc-light-blue-500 c-white w-100 p-20 mT-15">
                             <div class="peer peer-greed">
                                 <h5 class="lh-1 mB-0">{{__('Building')}}: {{ $chosen->name }}</h5>
+                                
                             </div>
                         </div>
+
+
                     @endif
                     <div class="row w-100 p-20">
                         @if (isset($chosen))

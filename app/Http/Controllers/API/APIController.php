@@ -24,6 +24,7 @@ class APIController extends Controller
      */
     public function roomsInBuilding(Request $request)
     {
+        //dd($request);
         $b_id = $request->input('b_id');
         return response()->json(Room::where('building_id', $b_id)->orderBy('name', 'asc')->get(), 200);
     }
@@ -47,15 +48,22 @@ class APIController extends Controller
 
     public function generateAccessCode(Request $request)
     {
-        dd($request);
+        //dd($request);
         $user_id = $request->user()->id;
         $booking_id = $request->input('bid');
         $booking = Booking::whereHas('details', function($query) use($user_id) {
             $query->where('booker_id', $user_id);
         })->findOrFail($booking_id);
-        $booking->access_code = self::rand_chars("ABCDEFGHJKLMNPQRSTUVWXY3456789", 6);
+        
+        // 定义要用于生成随机字符串的字符集
+        $chars = "ABCDEFGHJKLMNPQRSTUVWXY3456789";
+        // 生成随机字符串
+        $access_code = substr(str_shuffle($chars), 0, 6);
+        // 将生成的随机字符串赋值给 $booking->access_code
+        $booking->access_code = $access_code;
         $booking->code_expiry = Carbon::now()->addHour();
         $booking->save();
+
         return response()->json([
             'code' => $booking->access_code,
             'expiry' => $booking->code_expiry->timestamp,

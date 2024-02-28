@@ -1,3 +1,4 @@
+
 <nav class="main-nav">
     <div class="container">
         <a href="{{ route('dashboard.index') }}" class="logo">
